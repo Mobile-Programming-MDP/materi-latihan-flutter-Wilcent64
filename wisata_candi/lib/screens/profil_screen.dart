@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wisata_candi/widgets/Profile_info_item.dart';
+import 'package:wisata_candi/widgets/profile_info_item.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -9,24 +9,26 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  bool isSignedIn = true;
-  String fullName = 'Wilcent';
-  String userName = 'Wilcents';
-  int favoriteCandiCount = 2;
-
+  //TODO 1: Deklarasi variabel (state) yang dibituhkan
+  bool isSignIn = false;
+  String fullName = "Wilcent";
+  String userName = "Wils";
+  int favouriteCandiCount = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          Container(
-            height: 200,
-            width: double.infinity,
-            color: Colors.amber,
-          ),
-          Column(
+        body: Stack(
+      children: [
+        Container(
+          height: 200,
+          width: double.infinity,
+          color: Colors.deepPurple,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
             children: [
+              //TODO: 2. Buat Bagiam ProfileHeader yang berisi foto profil
               Align(
                 alignment: Alignment.topCenter,
                 child: Padding(
@@ -37,15 +39,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Container(
                         decoration: BoxDecoration(
                             border:
-                                Border.all(color: Colors.deepPurple, width: 2),
+                                Border.all(color: Colors.deepOrange, width: 2),
                             shape: BoxShape.circle),
-                        child: const CircleAvatar(
+                        child: CircleAvatar(
                           radius: 50,
                           backgroundImage:
-                              AssetImage('images/placeholder_image.png'),
+                              AssetImage("images/placeholder_image.png"),
                         ),
                       ),
-                      if (isSignedIn)
+                      if (isSignIn)
                         IconButton(
                             onPressed: () {},
                             icon: Icon(
@@ -56,6 +58,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
               ),
+              //TODO: 3. Buat Bagiam ProfileInfo yang berisi info profil
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
@@ -88,7 +91,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         icon: Icons.person,
                         label: 'Nama',
                         value: fullName,
-                        showEditIcon: isSignedIn,
+                        showEditIcon: isSignIn,
                         onEditPressed: () {
                           debugPrint('Icon edit ditekan ...');
                         },
@@ -106,7 +109,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         icon: Icons.favorite,
                         label: 'Favorit',
                         value:
-                            favoriteCandiCount > 0 ? '$favoriteCandiCount' : '',
+                            favouriteCandiCount > 0 ? '$favouriteCandiCount' : '',
                         iconColor: Colors.red),
                     const SizedBox(
                       height: 5,
@@ -117,7 +120,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     SizedBox(
                       height: 20,
                     ),
-                    isSignedIn
+                    //TODO: 2. Buat Bagiam ProfileAction yang berisi textButton signin/signout
+                    isSignIn
                         ? TextButton(
                             onPressed: () {},
                             child: Text('Sign Out'),
@@ -139,6 +143,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ],
           )
+        )
         ],
       ),
     );
